@@ -1,0 +1,22 @@
+<template>
+   <lightning-card title="Parent - Child Communication" icon-name="custom:custom7">
+    <div class="slds-m-left_medium">
+        <p>
+            <lightning-input label="Enter any Value" onchange={handleChange}></lightning-input><br/>
+            <lightning-button label="Call printChildProperty" onclick={handleClick}></lightning-button>
+        </p>
+        <p>
+            Hello From Parent Component....<br>
+            Value of parent property is : {parentProperty}
+        </p>
+        <p>
+            <!-- <c-child-component child-property={parentProperty}
+            onchildevent={handleChildEvent}>
+            </c-child-component> -->
+
+            <c-child-component child-property={parentProperty} onchildevent={handleChildEvent}>
+            </c-child-component>
+        </p>
+    </div>
+   </lightning-card> 
+</template>

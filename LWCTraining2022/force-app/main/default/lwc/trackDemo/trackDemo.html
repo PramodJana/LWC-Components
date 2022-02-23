@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Track Demo" icon-name="custom:custom6">
+        <div class="slds-m-left_medium">
+            <template for:each={products} for:item="product">
+                <p key={id}>
+                    {product}
+                </p>
+            </template>
+
+            <p>
+                <lightning-button label="Add Product" onclick={addProduct}>
+
+                </lightning-button>
+            </p>
+        </div>
+    </lightning-card>
+</template>
