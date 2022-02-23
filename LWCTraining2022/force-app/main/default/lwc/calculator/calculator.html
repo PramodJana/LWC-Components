@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Calculator Demo" icon-name="standard:calculated_insights">
+        <div class="slds-m-left_medium">
+            <p>
+                First Number : <lightning-input name="fno" onchange={handleChange}>
+                </lightning-input>
+            </p>
+            <p>
+                Second Number : <lightning-input name="sno" onchange={handleChange}>
+                </lightning-input>
+            </p>
+            <p class="slds-p-around_medium">
+                Result : {result}
+            </p>
+            <p class="slds-p-around_medium">
+                <lightning-button label="Add" variant="brand" onclick={add}>
+                </lightning-button>
+                <lightning-button label="Subtract" variant="brand" onclick={subtract}>
+                </lightning-button>
+            </p>
+          
+        </div>
+    </lightning-card>
+</template>

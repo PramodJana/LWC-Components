@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Expression Demo 2" icon-name="custom:custom2">
+        <div class="slds-m-left_medium">
+            <p>
+                First Name : {firstName}<br/>
+                <lightning-input label="First Name" name="fName" onchange={handleChange}>
+
+                </lightning-input>
+            </p>
+            <p>
+                Last Name : {lastName}<br/>
+                <lightning-input label="Last Name" name="lName">
+
+                </lightning-input>
+            </p>
+            <p>
+                Full Name : {fullName}
+            </p>
+        </div>
+    </lightning-card>
+</template>
