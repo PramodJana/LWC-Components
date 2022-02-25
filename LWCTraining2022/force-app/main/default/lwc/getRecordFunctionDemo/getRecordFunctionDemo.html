@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Contact details : getRecordFunctionDemo" icon-name="standard:contact">
+        <div class="slds-m-left_medium" if:true={contact}>
+            <!-- <p>
+                Name : {name}
+            </p>
+            <p>
+                Title : {title}
+            </p>
+            <p>
+                Email : {email}
+            </p>
+            <p>
+                Phone : {phone}
+            </p> -->
+            <p>Name : {contact.cname}</p>
+            <p>Title : {contact.ctitle}</p>
+            <p>Email : {contact.cemail}</p>
+            <p>Phone : {contact.cphone}</p>
+        </div>
+    </lightning-card>
+</template>

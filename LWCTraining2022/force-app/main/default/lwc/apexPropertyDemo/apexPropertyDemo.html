@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Contact details : ApexProperty demo" icon-name="standard:contact">
+        <div class="slds-m-left_medium" if:true={contacts.data}>
+
+            <table class="slds-table slds-table_bordered">
+                <thead>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </thead>
+              <tbody>
+                <template for:each={contacts.data} for:item="contact">
+                    <tr key={contact.Id}>
+                        <td>{contact.Id}</td>
+                        <td>{contact.Email}</td>
+                        <td>{contact.Title}</td>
+                        <td>{contact.Phone}</td>
+                    </tr>
+                </template>
+              </tbody>
+            </table>
+
+
+            <!-- <template for:each={contacts.data} for:item="contact">
+                <p key={contact.Id}>
+                    {contact.Id}::{contact.Email}::{contact.Phone}::{contact.Title}
+                </p>
+            </template> -->
+        </div>
+    </lightning-card>
+</template>
