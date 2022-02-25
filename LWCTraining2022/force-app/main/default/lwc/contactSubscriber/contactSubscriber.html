@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Contact details : SUBSCRIBER" icon-name="standard:contact">
+        <lightning-button label="Edit" icon-name="action:edit" slot="actions" onclick={editRecord}>
+           </lightning-button>
+        <lightning-button label="Delete" icon-name="action:delete" slot="actions" onclick={deleteContact}>
+            </lightning-button>
+        <div class="slds-m-left_medium" if:true={contact.data}>
+           <p>
+               Name : {name}
+           </p>
+           <p>
+            Title : {title}
+        </p>
+        <p>
+            Email : {email}
+        </p>
+        <p>
+            Phone : {phone}
+        </p>
+        </div>
+    </lightning-card>
+</template>
