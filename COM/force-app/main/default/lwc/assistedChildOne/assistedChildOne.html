@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="This is the attribute selection">
+        <lightning-radio-group name="radioGroup"
+                          label="Select Size"
+                          options={options}
+                          value={value}
+                          type="radio"
+                          onchange={handleRadioClick}></lightning-radio-group>
+                          <p class="slds">
+                              This is the selected value {radioSelected}.
+                          </p>
+    </lightning-card>
+  
+</template>

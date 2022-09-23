@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Web Component in HTML5</title>
+</head>
+<body>
+    <h1>
+        Custom Web Component in HTML5
+    </h1>
+
+    <movie-card name="Lord Of the Rings" detail="Some information related to LOR">
+    </movie-card>
+
+    <p>
+        I'm not in custom Element
+    </p>
+<style>
+    p{
+        color: red;
+    }
+</style>
+    <script>
+        class DemoApexHours extends HTMLElement{
+            constructor(){
+                super();
+
+                let innerHTML = `
+                <h1>${this.name}</h1>
+                <p>${this.detail}</p>
+                <style>
+                    p{
+                        color:#0000FF;
+                    }
+                </style>
+                `;
+
+                let shadowRoot = this.attachShadow({mode:'open'});
+                shadowRoot.innerHTML = innerHTML;
+            }
+
+            set name(val){
+                this.setAttribute('name',val);
+            }
+            get name(){
+                return this.getAttribute('name');
+            }
+
+
+            set detail(val){
+                this.setAttribute('detail',val);
+            }
+            get detail(){
+                return this.getAttribute('detail');
+            }
+
+            connectedCallback(){
+                console.log('Element inserted in DOM');
+            }
+
+            disconnectedCallback(){
+                console.log('Element removed from DOM');
+            }
+        }
+
+        window.customElements.define('movie-card',DemoApexHours);
+    </script>
+</body>
+</html>

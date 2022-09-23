@@ -1,0 +1,38 @@
+<template>
+<div class="test-body">
+<div class="slds-grid">
+    <div class="slds-col slds-size_1-of-4">
+
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+        
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+        
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+        <lightning-button-stateful
+        label-when-off="Show Cart"
+        label-when-on="Hide Cart"
+        label-when-hover="Click Me to hide the Cart"
+        icon-name-when-off="utility:cart"
+        icon-name-when-on="utility:hide"
+        icon-name-when-hover="utility:hide"
+        selected={showCart}
+        onclick={handleShowCart}>
+    </lightning-button-stateful>
+    </div>
+</div>
+
+
+<div class="slds-grid">
+    <div class="slds-col canvas" data-name="canvas">
+        <div class="slds-align_absolute-center">This content will be positioned in the absolute center of its container</div>
+    </div>
+    <div class="slds-col slds-hide cartBody" data-name="cartBody">
+        <div class="slds-align_absolute-center">This should hide content will be positioned in the absolute center of its container</div>
+    </div>
+</div>
+
+</div>
+</template>

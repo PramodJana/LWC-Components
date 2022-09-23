@@ -1,0 +1,24 @@
+<template>
+   <div class="slds-grid container">
+       <div class="slds-col slds-size_1-of-2">
+        <div class="slds-p-around_medium">
+        <lightning-input type="text" label="Account Industry"
+        onblur={AccountIndustryChange} class="account-industry"
+        value={AccountIndustryValue}></lightning-input>
+        </div>
+       </div>
+
+       <template if:true={SuccessResponse}>
+        <div class="slds-col slds-size_1-of-2">
+            <div class="slds-p-around_medium">
+                <lightning-radio-group name="AccountIndustry"
+                options={AccountIndustryOptions}
+                value={AccountIndustryValue}
+                type="radio"
+                onchange={handleAccountIndustryChange}></lightning-radio-group>
+                <p>This is the selected radio value {AccountIndustryValue}</p>
+           </div>
+       </div>
+       </template>  
+   </div>
+</template>

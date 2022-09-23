@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Demo</title>
+</head>
+<body>
+    Hello World
+
+    <template id="tmpTopMovies">
+        <h3>
+            Movie Name
+        </h3>
+        <p>
+            Deescription
+        </p>
+    </template>
+
+    <div id="tmpPlaceholder"></div>
+    <script>
+        let movies = [
+        {name: "Lord of the Rings", detail: "Some info about LOR"},
+        {name: "Star Wars", detail: "Some info about SW"},
+        ];
+
+        let t = document.querySelector('#tmpTopMovies');
+        let pholder = document.querySelector('#tmpPlaceholder');
+
+        for (i in movies){
+            t.content.querySelector('h3').innerText = movies[i].name;
+            t.content.querySelector('p').innerText = movies[i].detail;
+
+            let clone = document.importNode(t.content,true);
+            pholder.appendChild(clone);
+        }
+    </script>
+</body>
+</html>

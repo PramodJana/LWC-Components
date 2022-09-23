@@ -1,0 +1,26 @@
+<template>
+   <lightning-card title="Test environment">
+ <lightning-layout title="This is the Test Environment">
+    <lightning-layout-item>
+      <p class="slds">
+         This is the value which came from child one to parent <br/>
+         Screen Size : {radiodata}
+         </p>
+    </lightning-layout-item>
+
+    <lightning-layout-item>
+       <c-assisted-child-one 
+       onradioclick={handleRadioClick}>
+
+       </c-assisted-child-one>
+    </lightning-layout-item>
+    <lightning-layout-item>
+       <c-assisted-child-2
+       radiodata={radiodata}>
+
+       </c-assisted-child-2>
+    </lightning-layout-item>
+
+ </lightning-layout>
+</lightning-card>
+</template>

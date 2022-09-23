@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title={strtitle} icon-name="custom:custon14">
+        <div>
+            <p>
+                Hello, {firstName2}.
+            </p>
+        </div>
+        <div>
+            <template if:true={showImage}>
+                <img src={imageUrl} alt="not found" width="200" height="200">
+            </template>
+           
+        </div>
+    </lightning-card>
+</template>

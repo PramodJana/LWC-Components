@@ -1,0 +1,112 @@
+create an OpportunityController Class in classes
+
+public with sharing class OpportunityController {
+
+@AuraEnabled
+public static void deleteOpportunityRecord(Id opportunityId){
+  try{
+    List<Opportunity> oppList =
+    [select Name
+    from Opportunity
+    where Id =: opportunityId];
+    delete oppList;
+  }
+  catch(Exception e)
+  {
+    throw new AuraHandledException(e.getMessage());
+  }
+}
+}
+
+
+
+create a OpportunityDR in lwc
+
+opportunityDR.html
+<template>
+    <lightning-card title="Opportuities with delete and refresh">
+        <div slot="actions">
+            <lightning-button label="Delete" variant="destructive" onclick={deleteSelectedRow}></lightning-button>
+            <!-- <lightning-button label="Show All Opps" onclick={showAllOps}></lightning-button>
+            <lightning-button label="Show Won Opps" onclick={showWonOps}></lightning-button> -->
+        </div>
+       <template if:true={oppList}>
+        <lightning-datatable onrowselection={handleRowSelection} key-field="Id" columns={oppColumns} data={oppList} max-row-selection="1">
+
+        </lightning-datatable>
+    </template>
+    </lightning-card>
+</template>
+
+
+opprtunityDR.js
+import { LightningElement, wire } from 'lwc';
+
+import deleteOpportunityRecord from '@salesforce/apex/OpportunityController.deleteOpportunityRecord';
+//import { deleteRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
+
+import getAllOpportunities from '@salesforce/apex/OpportunityController.getAllOpportunities'
+
+const COLUMNS = [
+    {label: 'Name', fieldName: 'Name', type: 'text'},
+    {label: 'Stage', fieldName: 'StageName', type: 'text'},
+    {label: 'Close Date', fieldName: 'CloseDate', type: 'text'},
+    {label: 'Amount', fieldName: 'Amount', type: 'currency'},
+];
+
+
+export default class OpportunityDR extends LightningElement {
+    oppList;
+    oppId;
+    oppColumns = COLUMNS;
+    _wiredServerResponse;
+
+    @wire(getAllOpportunities)  
+    wiredGetAllOpportunities(serverResponse){   
+        this._wiredServerResponse = serverResponse;
+        if(serverResponse.data){
+            this.oppList = serverResponse.data;
+        }
+    }
+
+
+    deleteSelectedRow(){
+        //alert("inside delete");
+        //deleteRecord(this.oppId)
+        deleteOpportunityRecord({opportunityId: this.oppId})
+        .then(()=>{
+            alert("deleted...");
+            const table= this.template.querySelector('lightning-datatable'); // document.getElementById('abc');
+            table.selectedRows = [];
+            refreshApex(this._wiredServerResponse);
+        })
+        .catch(()=>{
+            alert("cloud not delete...");
+        })
+    }
+
+    
+    handleRowSelection(event){
+        //alert("i am inside handler refresh");
+        const rowsSelected = event.detail.selectedRows;
+        this.oppId = rowsSelected[0].Id;
+        // if(rowsSelected.length>0){
+        //     this.oppId = rowsSelected[0].Id;
+        // }
+        
+      //  alert("You have selected "+this.oppId);
+        
+    }
+}
+
+opprtunityDR.js.meta.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+    </targets>
+    
+</LightningComponentBundle>
